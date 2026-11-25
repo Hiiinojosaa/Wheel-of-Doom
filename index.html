@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doom Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Neonderthaw&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/atoms.css">
+  <link rel="stylesheet" href="css/molecules.css">
+  <link rel="stylesheet" href="css/organisms.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- ===== FASE 1: PRESENTACIÓN ===== -->
+  <section class="intro screen" id="introScreen" aria-labelledby="introLogo">
+    <h1 class="logo logo--hero" id="introLogo"><span class="logo__doom">DOOM</span><span class="logo__club">Club</span></h1>
+    <div class="intro__actions">
+      <button class="btn btn--big btn--pulse intro__play" type="button" id="playBtn">▶ Jugar</button>
+      <button class="btn btn--big btn--ghost" type="button" id="rulesBtn">? Reglas del juego</button>
+    </div>
+    <div class="parade" id="parade" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== FASE 2a: QUÉ SE SORTEA ===== -->
+  <section class="screen" id="purposeScreen" hidden>
+    <header class="topbar">
+      <p class="logo"><span class="logo__doom">DOOM</span><span class="logo__club">Club</span></p>
+      <ol class="stepper" aria-label="Fases">
+        <li aria-current="step">¿Qué se sortea?</li>
+        <li>¿Quién viene?</li>
+        <li>La entrada</li>
+      </ol>
+    </header>
+    <form class="panel step-card" id="purposeForm" novalidate>
+      <span class="label">Paso 1 de 3</span>
+      <label class="step-card__title" for="purposeInput">¿Qué se <em>sortea</em> esta noche?</label>
+      <p class="step-card__lead">Escribe lo que quieras o elige uno de los recomendados. Al que se quede fuera, le toca.</p>
+      <input class="input purpose-input" id="purposeInput" type="text" maxlength="40" placeholder="Ej.: pagar la ronda" autocomplete="off">
+      <span class="label">Recomendados</span>
+      <div class="chips" id="purposeChips">
+        <button class="chip" type="button" data-value="pagar la ronda">🍻 Pagar la ronda</button>
+        <button class="chip" type="button" data-value="fregar los platos">🧽 Fregar los platos</button>
+        <button class="chip" type="button" data-value="conducir el sábado">🚗 Conducir el sábado</button>
+        <button class="chip" type="button" data-value="bajar la basura">🗑️ Bajar la basura</button>
+        <button class="chip" type="button" data-value="exponer primero">🎤 Exponer primero</button>
+        <button class="chip" type="button" data-value="invitar a cenar">🍕 Invitar a cenar</button>
+        <button class="chip" type="button" data-value="ser sacrificado/a">💀 Ser sacrificado/a</button>
+      </div>
+      <div class="step-nav">
+        <button class="btn btn--ghost" type="button" id="purposeBack">← Inicio</button>
+        <button class="btn btn--big btn--cyan" type="submit" id="purposeNext">Siguiente →</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===== FASE 2b: QUIÉN VIENE ===== -->
+  <section class="screen" id="peopleScreen" hidden>
+    <header class="topbar">
+      <p class="logo"><span class="logo__doom">DOOM</span><span class="logo__club">Club</span></p>
+      <ol class="stepper" aria-label="Fases">
+        <li class="is-done">¿Qué se sortea?</li>
+        <li aria-current="step">¿Quién viene?</li>
+        <li>La entrada</li>
+      </ol>
+    </header>
+    <section class="panel taquilla step-card step-card--wide" aria-labelledby="taquillaTitle">
+      <span class="label">Paso 2 de 3 · <span id="taquillaCount"></span></span>
+      <h2 class="step-card__title" id="taquillaTitle">¿Quién <em>viene</em>?</h2>
+      <div class="taquilla__grid">
+        <div class="stage" id="stage" tabindex="0" aria-label="Vista previa del personaje. Usa las flechas izquierda y derecha para cambiarlo.">
+          <span class="stage__tag stage__tag--empty" id="stageTag">¿Quién eres?</span>
+          <div class="stage__sprite sprite" id="stageSprite"></div>
+          <span class="stage__skin" id="stageSkin"></span>
+          <button class="stage__arrow stage__arrow--prev" type="button" id="prevSkin" aria-label="Personaje anterior">◀</button>
+          <button class="stage__arrow stage__arrow--next" type="button" id="nextSkin" aria-label="Personaje siguiente">▶</button>
+        </div>
+        <form class="taquilla__form" id="addForm" novalidate>
+          <label class="label" for="nameInput">Tu nombre</label>
+          <div class="name-row">
+            <input class="input" id="nameInput" type="text" maxlength="14" placeholder="Escribe tu nombre" autocomplete="off">
+            <button class="btn btn--icon" type="button" id="randomSkin" title="Personaje al azar" aria-label="Personaje al azar">🎲</button>
+          </div>
+          <span class="label">Personaje</span>
+          <div class="skins" id="skinPicker" role="group" aria-label="Personajes"></div>
+          <p class="form-error" id="formError" aria-live="polite"></p>
+          <button class="btn btn--big" type="submit" id="addBtn">Apuntarme +</button>
+        </form>
+      </div>
+      <span class="label">Lista de invitados</span>
+      <ul class="guest-strip" id="guestList"></ul>
+      <div class="step-nav">
+        <button class="btn btn--ghost" type="button" id="peopleBack">← Atrás</button>
+        <p class="step-nav__hint" id="goHint" aria-live="polite"></p>
+        <button class="btn btn--big btn--cyan" type="button" id="goBtn">Ir a la discoteca →</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== FASE 3: LA ENTRADA ===== -->
+  <section class="screen" id="clubScreen" hidden>
+    <div class="scene" id="scene">
+      <canvas class="scene__canvas" id="sceneCanvas" aria-hidden="true"></canvas>
+      <div class="scene__fx" id="sceneFx" aria-hidden="true"></div>
+      <div class="scene__actors" id="sceneActors"></div>
+      <div class="rain" id="rain" aria-hidden="true"></div>
+      <div class="scene__grade" aria-hidden="true"></div>
+
+      <div class="hud hud--top">
+        <div class="hud__brand">
+          <p class="logo"><span class="logo__doom">DOOM</span><span class="logo__club">Club</span></p>
+          <span class="hud__purpose" id="hudPurpose"></span>
+        </div>
+        <div class="hud__actions">
+          <button class="btn btn--ghost btn--small" type="button" id="muteBtn" aria-pressed="false">♪ Sí</button>
+          <button class="btn btn--ghost btn--small" type="button" id="speedBtn" aria-pressed="false">⏩ x1</button>
+          <button class="btn btn--ghost btn--small" type="button" id="resetBtn">↺ Reiniciar</button>
+          <button class="btn btn--ghost btn--small" type="button" id="editBtn">✎ Lista</button>
+        </div>
+      </div>
+      <div class="hud hud--bottom">
+        <p class="ticker" id="ticker" aria-live="polite">El portero está listo.</p>
+        <button class="btn btn--big btn--cyan btn--pulse" type="button" id="roundBtn">¡Que pase la cola!</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== REGLAS ===== -->
+<div class="modal" id="rulesModal" role="dialog" aria-modal="true" aria-labelledby="rulesTitle" hidden>
+  <div class="dialog dialog--rules">
+    <h2 class="dialog__title" id="rulesTitle">Cómo se juega</h2>
+    <ol class="rules">
+      <li class="rule">
+        <div class="rule__art"><span class="rule__chip">🍻 PAGAR</span></div>
+        <div class="rule__text"><strong>Decidid qué se sortea</strong><span>Pagar la ronda, fregar, conducir… lo que queráis.</span></div>
+      </li>
+      <li class="rule">
+        <div class="rule__art rule__art--walk"><div class="sprite" id="ruleSprite"></div></div>
+        <div class="rule__text"><strong>Apuntaos en la taquilla</strong><span>Cada uno elige uno de los 12 personajes y pone su nombre. Mínimo 2 personas.</span></div>
+      </li>
+      <li class="rule">
+        <div class="rule__art"><div class="sprite" id="ruleBouncer"></div><span class="rule__bubble">¿Tú?</span></div>
+        <div class="rule__text"><strong>El portero os mira uno a uno</strong><span>Pasan, pasan, pasan… y de repente a alguien le dice que no. Puede vacilar a cualquiera, así que no os fiéis.</span></div>
+      </li>
+      <li class="rule">
+        <div class="rule__art"><span class="rule__bubble" style="position:static;font-size:.8rem">¡FUERA!</span></div>
+        <div class="rule__text"><strong>Al que se queda fuera, le toca</strong><span>Podéis seguir jugando rondas hasta que no quede nadie. Al final veréis el orden en que fuisteis cayendo.</span></div>
+      </li>
+    </ol>
+    <p class="dialog__extra" style="text-align:left">Es justo: el portero elige completamente al azar.</p>
+    <div class="dialog__actions">
+      <button class="btn btn--big" type="button" id="rulesPlay">¡Entendido, a jugar!</button>
+      <button class="btn btn--ghost btn--small" type="button" id="rulesClose">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULTADO DE CADA RONDA ===== -->
+<div class="modal" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="dialogName" hidden>
+  <div class="dialog">
+    <div class="dialog__avatar sprite" id="dialogAvatar"></div>
+    <p class="dialog__kicker" id="dialogKicker">¡TÚ NO!</p>
+    <h2 class="dialog__name" id="dialogName"></h2>
+    <div class="dialog__task">
+      <span class="label">Le toca</span>
+      <strong id="dialogTask"></strong>
+    </div>
+    <p class="dialog__extra" id="dialogExtra"></p>
+    <div class="dialog__actions">
+      <button class="btn btn--big" type="button" id="nextRoundBtn">Siguiente ronda →</button>
+      <button class="btn btn--ghost btn--small" type="button" id="finishBtn">Terminar aquí</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FINAL ===== -->
+<div class="modal" id="finalModal" role="dialog" aria-modal="true" aria-labelledby="finalTitle" hidden>
+  <div class="dialog dialog--final">
+    <div class="dialog__avatar sprite" id="finalAvatar"></div>
+    <h2 class="dialog__title" id="finalTitle">Se acabó la fiesta</h2>
+    <p class="dialog__extra" id="finalLead"></p>
+    <ol class="ranking" id="ranking"></ol>
+    <p class="dialog__extra" id="finalCountdown"></p>
+    <div class="dialog__actions">
+      <button class="btn btn--big btn--pulse" type="button" id="playAgainBtn">↻ Volver a jugar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/logic.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

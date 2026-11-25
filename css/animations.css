@@ -1,0 +1,38 @@
+/* ---------- ANIMACIONES ---------- */
+@keyframes screen-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes neon { 0%, 19%, 23%, 61%, 65%, 100% { opacity: 1; } 21%, 63% { opacity: .45; } }
+@keyframes neon-buzz { 0%, 40%, 44%, 46%, 100% { opacity: 1; } 42%, 45% { opacity: .35; } }
+@keyframes idle { 50% { transform: translateY(2px); } }
+@keyframes walk { from { background-position: 0 0; } to { background-position: 200% 0; } }
+@keyframes talk { 50% { transform: scaleX(-1) translateY(-2px); } }
+@keyframes nervous { 50% { transform: translateX(1px) translateY(1px); } }
+@keyframes parade { from { left: -60px; } to { left: 100%; } }
+@keyframes jump { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-30%); } 70% { transform: translateY(0) scaleY(.92); } }
+@keyframes swap { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
+@keyframes appear { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@keyframes tumble { 0% { transform: translateY(0) rotate(0); } 40% { transform: translateY(-40%) rotate(-200deg); } 100% { transform: translateY(10%) rotate(-360deg); } }
+@keyframes stamp { from { transform: scale(2.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes stamp-center { from { transform: translate(-50%, -50%) rotate(-8deg) scale(2.4); opacity: 0; } to { transform: translate(-50%, -50%) rotate(-8deg) scale(1); opacity: 1; } }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse { 50% { box-shadow: 0 4px 0 #000, 0 0 26px rgba(255, 79, 184, .8); } }
+@keyframes sweep { from { transform: rotate(-28deg); } to { transform: rotate(24deg); } }
+@keyframes drift { from { transform: translateX(-100%); } to { transform: translateX(var(--to)); } }
+@keyframes drive { 0% { transform: translateX(-100%); } 55%, 100% { transform: translateX(var(--to)); } }
+@keyframes rain { to { background-position: var(--rain-x) var(--rain-y); } }
+@keyframes club-lights { 0% { background: #ff4fb8; } 33% { background: #39e6ff; } 66% { background: #9b59ff; } }
+@keyframes dance { 50% { transform: translateY(15%) rotate(6deg); } }
+@keyframes strobe { 0% { filter: hue-rotate(0); } 33% { filter: hue-rotate(80deg); } 66% { filter: hue-rotate(200deg); } }
+@keyframes chase { 50% { opacity: .25; } }
+@keyframes blade-bulbs { 50% { border-color: #ff9ed8; } }
+@keyframes shimmer { from { transform: scaleY(.9) skewX(-3deg); opacity: .35; } to { transform: scaleY(1.05) skewX(3deg); opacity: .6; } }
+@keyframes haze { from { transform: translateX(-8%); opacity: .6; } to { transform: translateX(8%); opacity: 1; } }
+@keyframes note-up { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -60px) rotate(15deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+

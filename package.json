@@ -1,0 +1,11 @@
+{
+  "name": "wheel-of-doom",
+  "version": "1.0.0",
+  "description": "Doom Club: sorteo justo y aleatorio con un portero de discoteca (proyecto Wheel of Doom, 2º DAW)",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

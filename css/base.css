@@ -1,0 +1,52 @@
+/* Layout: mobile first, 3 fases. Intro → preparación (2 pasos, sin scroll) → la entrada (escena a pantalla completa).
+   600px y 1024px = puntos de quiebre. La escena calcula su tamaño de píxel según el alto disponible. */
+:root {
+  color-scheme: dark;
+  --night: #0a0612;
+  --panel: #140d22;
+  --panel-2: #1f1536;
+  --edge: #35265a;
+  --text: #f1eaff;
+  --muted: #a194c4;
+  --pink: #ff4fb8;
+  --cyan: #39e6ff;
+  --yellow: #ffd23f;
+  --red: #ff3b4f;
+  --green: #3dff9a;
+  --gold: #d4a640;
+  --font-pixel: "Pixelify Sans", "Courier New", monospace;
+  --font-sign: "DotGothic16", "Pixelify Sans", monospace;
+  --font-block: "Press Start 2P", "Pixelify Sans", monospace;
+  --font-script: "Neonderthaw", "Brush Script MT", cursive;
+}
+
+html, body { height: 100%; }
+body {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 79, 184, .12), transparent 50%),
+    radial-gradient(ellipse at 90% 30%, rgba(57, 230, 255, .08), transparent 50%),
+    var(--night);
+  color: var(--text);
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  line-height: 1.4;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .4; }
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+
+.app {
+  max-width: 1200px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.app--wide { max-width: none; }
+.screen { animation: screen-in .4s ease-out; }
+
+

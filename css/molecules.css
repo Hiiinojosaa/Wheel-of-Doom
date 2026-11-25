@@ -1,0 +1,42 @@
+/* ---------- LOGO (molécula): DOOM en bloque pixel + "Club" en neón manuscrito ---------- */
+.logo { position: relative; display: inline-block; margin: 0; padding: 0 .9em .45em 0; line-height: 1; font-size: 22px; }
+.logo__doom {
+  display: block;
+  font: 400 1em/1 var(--font-block);
+  letter-spacing: .04em;
+  color: #ffe3f4;
+  text-shadow:
+    0 0 .08em #fff,
+    .09em .09em 0 #c2187f,
+    .18em .18em 0 #5a0a3a,
+    0 0 .5em rgba(255, 79, 184, .9),
+    0 0 1.2em rgba(255, 79, 184, .6);
+}
+.logo__club {
+  position: absolute;
+  right: 0; bottom: -.12em;
+  font: 400 1.25em/1 var(--font-script);
+  color: #e9fdff;
+  transform: rotate(-8deg);
+  text-shadow: 0 0 .06em #fff, 0 0 .2em var(--cyan), 0 0 .5em var(--cyan), 0 0 1em var(--cyan);
+  animation: neon-buzz 5s infinite;
+}
+.logo--hero { font-size: clamp(2.6rem, 13vw, 6.4rem); }
+
+.topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-bottom: 18px; }
+.stepper { list-style: none; margin: 0 auto 0 0; padding: 0; display: flex; gap: 6px; flex-wrap: wrap; counter-reset: step; }
+.stepper li {
+  counter-increment: step;
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border: 2px solid var(--edge);
+  font-size: .8rem;
+  color: var(--muted);
+}
+.stepper li::before { content: counter(step); display: grid; place-items: center; width: 1.4em; height: 1.4em; background: var(--edge); color: var(--text); font-weight: 700; font-size: .75rem; }
+.stepper li[aria-current="step"] { border-color: var(--yellow); color: var(--yellow); }
+.stepper li[aria-current="step"]::before { background: var(--yellow); color: #1a1405; }
+.stepper li.is-done { color: var(--green); border-color: #1d5a3c; }
+.stepper li.is-done::before { content: "✓"; background: var(--green); color: #04140b; }
+
+

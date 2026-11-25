@@ -1,0 +1,25 @@
+/* ---------- PUNTO DE QUIEBRE 1 ---------- */
+@media (min-width: 600px) {
+  .logo:not(.logo--hero) { font-size: 26px; }
+  .parade { height: 96px; }
+  .parade__walker, .parade__bouncer { width: 72px; height: 96px; }
+  .intro { padding-bottom: 190px; }
+  .taquilla__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); align-items: start; }
+  .stage { height: 100%; min-height: 250px; }
+  .stage__sprite { width: 108px; height: 144px; }
+  .actor__label { font-size: .85rem; }
+  .bubble { font-size: 1.05rem; }
+}
+/* ---------- PUNTO DE QUIEBRE 2 ---------- */
+@media (min-width: 1024px) {
+  .step-card--wide { max-width: 1000px; }
+  .stage { min-height: 300px; }
+}
+/* ---------- BONUS: horizontal ---------- */
+@media (orientation: landscape) and (max-height: 500px) {
+  .intro { min-height: 0; padding: 20px 20px 130px; gap: 12px; }
+  .logo--hero { font-size: 2.4rem; }
+  .stage { min-height: 160px; }
+  .hud--bottom { padding: 8px; padding-top: 18px; }
+  .ticker { padding: 6px 10px; }
+}
