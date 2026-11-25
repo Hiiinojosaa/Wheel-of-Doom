@@ -113,7 +113,7 @@ Se testean las funciones de `js/logic.js`: elegir un nombre, añadir y quitar pe
 
 ![La entrada en escritorio](docs/img/4-la-entrada-escritorio.png)
 
-Enlace a Figma: _pendiente_
+Enlace a Figma (maquetas de móvil, tablet y escritorio + guía de estilos): https://www.figma.com/design/5dIVC2pBxmCOX9Jepp1AGX
 
 ## Planificación
 
